@@ -1,19 +1,10 @@
 package org.jfree.data.test;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.security.InvalidParameterException;
+import org.jfree.data.*;
+import org.junit.*;
 
-import junit.framework.TestCase;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.DefaultKeyedValues2D;
-import org.jfree.data.Values2D;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class DataUtilitiesTest extends DataUtilities {
 
@@ -21,9 +12,6 @@ public class DataUtilitiesTest extends DataUtilities {
 	private static double[] validArray = {1.8,2.3,3.7,4.2,5.8};
 	private static double[] intArray = {1,2,3,4};
 
-//	
-//	d[0] = new double[] {1.1, 2.2, 3.3, 4.4};
-//  d[1] = new double[] {1.1, 2.2, 3.3, 4.4, 5.5};
 
 
 
@@ -32,7 +20,6 @@ public class DataUtilitiesTest extends DataUtilities {
 		DefaultKeyedValues2D testValues = new DefaultKeyedValues2D();
 
 		values2D = testValues;
-
 
 		testValues.addValue(1, 0, 0);
 		testValues.addValue(2, 0, 1);
@@ -43,9 +30,6 @@ public class DataUtilitiesTest extends DataUtilities {
 		testValues.addValue(-2, 1, 1);
 		testValues.addValue(17, 1, 2);
 		testValues.addValue(-834, 1, 3);
-
-
-
 	}
 
 
@@ -79,43 +63,43 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	}
 	// TC 6.4
-	public void testInvalidDataValidColumnTotal(){
-		try
-		{
-			DataUtilities.calculateColumnTotal("james", 0);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
-		}
-	}
+//	public void testInvalidDataValidColumnTotal(){
+//		try
+//		{
+//			DataUtilities.calculateColumnTotal("james", 0);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 	// TC 6.5
-	public void testInvalidDataInvalidColumnTotal(){
-		try
-		{
-			DataUtilities.calculateColumnTotal('j', -23);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	public void testInvalidDataInvalidColumnTotal(){
+//		try
+//		{
+//			DataUtilities.calculateColumnTotal('j', -23);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 		// TC 6.4
-	public void testBooleanDataInvalidColumnTotal(){
-		try
-		{
-			DataUtilities.calculateColumnTotal(true, 55);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	public void testBooleanDataInvalidColumnTotal(){
+//		try
+//		{
+//			DataUtilities.calculateColumnTotal(true, 55);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 
 	//calculatRowTotal method
@@ -142,43 +126,44 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	}
 	// TC 7.4
-	public void testInvalidDataValidRowTotal(){
-		try
-		{
-			DataUtilities.calculateRowTotal("james", 0);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	public void testInvalidDataValidRowTotal(){
+//		try
+//		{
+//			DataUtilities.calculateRowTotal("james", 0);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 	// TC 7.5
-	public void testInvalidDataInvalidRowTotal(){
-		try
-		{
-			DataUtilities.calculateRowTotal('j', -23);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	public void testInvalidDataInvalidRowTotal(){
+//		try
+//		{
+//			DataUtilities.calculateRowTotal('j', -23);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 	// TC 7.6
-	public void testBooleanDataInvalidRowTotal(){
-		try
-		{
-			DataUtilities.calculateRowTotal(true, 55);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	@Test
+//	public void testBooleanDataInvalidRowTotal(){
+//		try
+//		{
+//			DataUtilities.calculateRowTotal(true, 55);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 	//createNumberArray method
 	// TC 8.1
@@ -223,26 +208,70 @@ public class DataUtilitiesTest extends DataUtilities {
         valid2DArray[1] = new double[] {191.2, 3.2, 6.3, 9.4};
 
         Number[][] n = DataUtilities.createNumberArray2D(valid2DArray);
-        assertEquals(2, n.length);
         assertEquals(4, n[0].length);
-        assertEquals(5, n[1].length);
+        assertEquals(4, n[1].length);
     }
 
     // TC 9.2
-    @Test
-    public void testCreateNumberArray2DInvalid() {
-        int[][] invalid2DArray = new int[2][];
+//    @Test
+//    public void testCreateNumberArray2DInvalid() {
+//        int[][] invalid2DArray = new int[2][];
+//
+//        invalid2DArray[0] = new int[] {1, 3, 5, 3};
+//        invalid2DArray[1] = new int[] {191, 3, 6, 8};
+//
+//        Number[][] n = DataUtilities.createNumberArray2D(invalid2DArray);
+//        assertEquals(2, n.length);
+//        assertEquals(4, n[0].length);
+//        assertEquals(5, n[1].length);
+//    }
 
-        invalid2DArray[0] = new int[] {1, 3, 5, 3};
-        invalid2DArray[1] = new int[] {191, 3, 6, 8};
+	//getCumulativePercentages method
 
-        Number[][] n = DataUtilities.createNumberArray2D(invalid2DArray);
-        assertEquals(2, n.length);
-        assertEquals(4, n[0].length);
-        assertEquals(5, n[1].length);
-    }
+	// TC 10.1
+	@Test
+	public void testGetCumulativePercentagesValid() {
+		DefaultKeyedValues kv = new DefaultKeyedValues();
+		kv.addValue("0", 5);
+		kv.addValue("1", 9);
+		kv.addValue("2", 2);
 
+		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
 
+		assertEquals(0.3125, percentages.getIndex("0"), 0.0000001);
+		assertEquals(0.875, percentages.getIndex("1"), 0.0000001);
+		assertEquals(0.1, percentages.getIndex("2"), 0.0000001);
 
-	//getCumlativePercentages method
+	}
+
+	// TC 10.2
+	@Test
+	public void testGetCumulativePercentagesNegNum() {
+		DefaultKeyedValues kv = new DefaultKeyedValues();
+		kv.addValue("0", -1);
+		try {
+			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
+			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+		}
+		catch (Exception e) {
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+		}
+	}
+
+	// TC 10.3
+	@Test
+	public void testGetCumulativePercentagesZero() {
+		DefaultKeyedValues kv = new DefaultKeyedValues();
+		kv.addValue("0", 0);
+		kv.addValue("1", 0);
+		kv.addValue("2", 0);
+
+		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
+
+		assertEquals(0, percentages.getIndex("0"), 0.0000001);
+		assertEquals(0, percentages.getIndex("1"), 0.0000001);
+		assertEquals(0, percentages.getIndex("2"), 0.0000001);
+
+	}
+
 }
