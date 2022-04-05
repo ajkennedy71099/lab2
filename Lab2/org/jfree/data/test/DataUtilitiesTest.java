@@ -6,6 +6,12 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * Any TC's commented out would not compile due to invalid input.
+ * @author James
+ *
+ */
+
 public class DataUtilitiesTest extends DataUtilities {
 
 	private static Values2D values2D;
@@ -42,7 +48,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//CalculateColumnTotal method
 	// TC 6.1
 	@Test
-	public void testValidDataCalculateColumnTotal() {
+	public void testCalculateColumnTotalValidData() {
 
 		assertEquals("Wrong sum returned. It should be -735",
 				-735, DataUtilities.calculateColumnTotal(values2D, 3), 0.00000001d);
@@ -50,20 +56,29 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 6.2
 	@Test
-	public void testValidDataNegColumnTotal(){
+	public void testCalculateColumnTotalNegColumn(){
+		try {
 
 			assertEquals("Wrong value returned should be 0",
-					0,DataUtilities.calculateColumnTotal(values2D, -47), 0.00000001d);
+					0, DataUtilities.calculateColumnTotal(values2D, -47), 0.00000001d);
+		} catch (Exception e) {
+			fail("0 Should have been Returned");
+		}
 	}
 	// TC 6.3
-	public void testEmptyArrayColumnTotal() {
+	@Test
+	public void testCalculateColumnTotalGreaterThanColumnUpperBound() {
 
+		try {
 			assertEquals("Wrong value returned should be 0",
-					0,DataUtilities.calculateColumnTotal(values2D, 56), 0.00000001d);
-
+					0, DataUtilities.calculateColumnTotal(values2D, 56), 0.00000001d);
+		} catch (Exception e) {
+			fail("0 Should have been Returned");
+		}
 	}
 	// TC 6.4
-//	public void testInvalidDataValidColumnTotal(){
+//	@Test
+//	public void testCalculateColumnTotalInvalidData(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal("james", 0);
@@ -76,7 +91,8 @@ public class DataUtilitiesTest extends DataUtilities {
 //	}
 
 	// TC 6.5
-//	public void testInvalidDataInvalidColumnTotal(){
+// @Test
+//	public void testCalculateColumnTotalInvalidDataNegNum(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal('j', -23);
@@ -89,7 +105,8 @@ public class DataUtilitiesTest extends DataUtilities {
 //	}
 
 		// TC 6.4
-//	public void testBooleanDataInvalidColumnTotal(){
+//		@Test
+//	public void testBooleanDataCalculateColumnTotal(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal(true, 55);
@@ -105,7 +122,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//calculatRowTotal method
 	// TC 7.1
 	@Test
-	public void testValidDataValidRowTotal() {
+	public void testCalculateRowTotalValidData() {
 
 		assertEquals("Wrong sum returned. It should be 107",
 				107, DataUtilities.calculateRowTotal(values2D, 0), 0.00000001d);
@@ -113,23 +130,28 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.2
 	@Test
-	public void testValidDataNegRowTotal(){
+	public void testCalculateRowTotal(){
+		try {
 
 			assertEquals("Wrong value returned should be 0",
 					0,DataUtilities.calculateRowTotal(values2D, -32), 0.00000001d);
+
+		} catch (Exception e) {
+					fail("0 Should have been Returned");
+		}
 	}
 	// TC 7.3
+	@Test
 	public void testEmptyArrayRowTotal() {
-
+		try {
 			assertEquals("Wrong value returned should be 0",
-					0,DataUtilities.calculateRowTotal(values2D, 21), 0.00000001d);
-
-	}
-
-	public void testEmptyArrayTotal2() {
-
+					0, DataUtilities.calculateRowTotal(values2D, 21), 0.00000001d);
+		} catch (Exception e) {
+			fail("0 Should have been Returned");
+		}
 	}
 	// TC 7.4
+	// @Test
 //	public void testInvalidDataValidRowTotal(){
 //		try
 //		{
@@ -143,6 +165,7 @@ public class DataUtilitiesTest extends DataUtilities {
 //	}
 
 	// TC 7.5
+//	@Test
 //	public void testInvalidDataInvalidRowTotal(){
 //		try
 //		{
@@ -157,7 +180,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.6
 //	@Test
-//	public void testBooleanDataInvalidRowTotal(){
+//	public void testBooleanDataCalculateRowTotal(){
 //		try
 //		{
 //			DataUtilities.calculateRowTotal(true, 55);
@@ -173,20 +196,24 @@ public class DataUtilitiesTest extends DataUtilities {
 	// TC 8.1
 	@Test
 	public void testCreateNumberArrayValid() {
-		Number[] numArray = DataUtilities.createNumberArray(validArray);
-		assertEquals("Length of arrays must be equal.",
-			validArray.length, numArray.length);
+		try {
+			Number[] numArray = DataUtilities.createNumberArray(validArray);
+			assertEquals("Length of arrays must be equal.",
+					validArray.length, numArray.length);
 
-		assertEquals("Array contents must be equal.", validArray[0],
-				numArray[0].doubleValue(), 0.0000001);
-		assertEquals("Array contents must be equal.", validArray[1],
-				 numArray[1].doubleValue(), 0.0000001);
-		assertEquals("Array contents must be equal.", validArray[2],
-				 numArray[2].doubleValue(), 0.0000001);
-		assertEquals("Array contents must be equal.", validArray[3],
-				 numArray[3].doubleValue(), 0.0000001);
-		assertEquals("Array contents must be equal.", validArray[4],
-				 numArray[4].doubleValue(), 0.0000001);
+			assertEquals("Array contents must be equal.", validArray[0],
+					numArray[0].doubleValue(), 0.0000001);
+			assertEquals("Array contents must be equal.", validArray[1],
+					numArray[1].doubleValue(), 0.0000001);
+			assertEquals("Array contents must be equal.", validArray[2],
+					numArray[2].doubleValue(), 0.0000001);
+			assertEquals("Array contents must be equal.", validArray[3],
+					numArray[3].doubleValue(), 0.0000001);
+			assertEquals("Array contents must be equal.", validArray[4],
+					numArray[4].doubleValue(), 0.0000001);
+		} catch (Exception e) {
+			fail("No exception should be thrown");
+		}
 	}
 	// TC 8.2
 	@Test
@@ -357,5 +384,6 @@ public class DataUtilitiesTest extends DataUtilities {
 //			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
 //		}
 //	}
+	
 
 }
