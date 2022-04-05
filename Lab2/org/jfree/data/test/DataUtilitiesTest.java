@@ -42,7 +42,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//CalculateColumnTotal method
 	// TC 6.1
 	@Test
-	public void testValidDataValidColumnTotal() {
+	public void testValidDataCalculateColumnTotal() {
 
 		assertEquals("Wrong sum returned. It should be -735",
 				-735, DataUtilities.calculateColumnTotal(values2D, 3), 0.00000001d);
@@ -125,6 +125,10 @@ public class DataUtilitiesTest extends DataUtilities {
 					0,DataUtilities.calculateRowTotal(values2D, 21), 0.00000001d);
 
 	}
+
+	public void testEmptyArrayTotal2() {
+
+	}
 	// TC 7.4
 //	public void testInvalidDataValidRowTotal(){
 //		try
@@ -186,6 +190,29 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 8.2
 	@Test
+	public void testCreateNumberArrayEmpty() {
+		double[] emptyArray = {};
+		Number[] numArray = DataUtilities.createNumberArray(emptyArray);
+		assertEquals("Length of arrays must be equal.",
+			emptyArray.length, numArray.length);
+	}
+	// TC 8.3
+	@Test
+	public void testCreateNumberArrayNull() {
+		double[] nullArray = null;
+		try
+		{
+			Number[] numArray = DataUtilities.createNumberArray(nullArray);
+			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+		}
+		catch (Exception e)
+		{
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+		}
+
+	}
+	// TC 8.4
+	@Test
 	public void testCreateNumberArrayInvalid() {
 		try
 		{
@@ -211,8 +238,33 @@ public class DataUtilitiesTest extends DataUtilities {
         assertEquals(4, n[0].length);
         assertEquals(4, n[1].length);
     }
+	// TC 9.2
+	@Test
+	public void testCreateNumberArray2DEmpty() {
+		double[][] empty2DArray = new double[2][];
+		empty2DArray[0] = new double[] {};
+		empty2DArray[1] = new double[] {};
 
-    // TC 9.2
+		Number[][] n = DataUtilities.createNumberArray2D(empty2DArray);
+		assertEquals(0, n[0].length);
+		assertEquals(0, n[1].length);
+	}
+	// TC 9.3
+	@Test
+	public void testCreateNumberArray2DNull() {
+		double[][] null2DArray = null;
+		try
+		{
+			Number[][] n = DataUtilities.createNumberArray2D(null2DArray);
+			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+		}
+		catch (Exception e)
+		{
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+		}
+	}
+
+    // TC 9.4
 //    @Test
 //    public void testCreateNumberArray2DInvalid() {
 //        int[][] invalid2DArray = new int[2][];
@@ -246,20 +298,6 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 10.2
 	@Test
-	public void testGetCumulativePercentagesNegNum() {
-		DefaultKeyedValues kv = new DefaultKeyedValues();
-		kv.addValue("0", -1);
-		try {
-			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e) {
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
-		}
-	}
-
-	// TC 10.3
-	@Test
 	public void testGetCumulativePercentagesZero() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 		kv.addValue("0", 0);
@@ -273,5 +311,51 @@ public class DataUtilitiesTest extends DataUtilities {
 		assertEquals(0, percentages.getIndex("2"), 0.0000001);
 
 	}
+
+	// TC 10.3
+
+	@Test
+	public void testGetCumulativePercentagesNegNum() {
+		DefaultKeyedValues kv = new DefaultKeyedValues();
+		kv.addValue("0", -1);
+		try {
+			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
+			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+		}
+		catch (Exception e) {
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+		}
+	}
+	// TC 10.4
+	@Test
+	public void testGetCumulativePercentagesEmpty() {
+		DefaultKeyedValues kv = new DefaultKeyedValues();
+
+		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
+
+		assertEquals(0, percentages.getIndex("0"), 0.0000001);
+	}
+	// TC 10.5
+	@Test
+	public void testGetCumulativePercentagesNull() {
+		try {
+			KeyedValues percentages = DataUtilities.getCumulativePercentages(null);
+			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+		}
+		catch (Exception e) {
+			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+		}
+	}
+	// TC 10.6
+//	@Test public void testGetCumulativePercentagesInvalidInput() {
+//		double[] values = new double[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//		try {
+//			KeyedValues percentages = DataUtilities.getCumulativePercentages(values);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e) {
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 }
