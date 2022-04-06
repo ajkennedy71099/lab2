@@ -42,23 +42,23 @@ public class RangeTest extends TestCase {
 	//Constrain Method Tests
 	@Test
 	public void testConstrain_ValueBelowRange() {
-		assertEquals("-4 is less than the lower bound so should return 1", rangeObjectUnderTest.constrain(-4), 1.0);
+		assertEquals("-4 is less than the lower bound so should return 1", 1.0, rangeObjectUnderTest.constrain(-4), 0.00000001d);
 	}
 	@Test
 	public void testConstrain_ValueEqualToLower() {
-		assertEquals("1 is on the lower bound so should return 1", rangeObjectUnderTest.constrain(1), 1.0);
+		assertEquals("1 is on the lower bound so should return 1", 1.0, rangeObjectUnderTest.constrain(1), 0.00000001d);
 	}
 	@Test
 	public void testConstrain_ValueWithinRange() {
-		assertEquals("3.4 is within the range so should return 3.4", rangeObjectUnderTest.constrain(3.4), 3.4);
+		assertEquals("3.4 is within the range so should return 3.4", 3.4, rangeObjectUnderTest.constrain(3.4), 0.00000001d);
 	}
 	@Test
 	public void testConstrain_ValueEqualToUpper() {
-		assertEquals("5 is on the upper bound so should return 5", rangeObjectUnderTest.constrain(5), 5.0);
+		assertEquals("5 is on the upper bound so should return 5", 5.0, rangeObjectUnderTest.constrain(5), 0.00000001d);
 	}
 	@Test
 	public void testConstrain_ValueAboveRange() {
-		assertEquals("8.7 is above the upper bound so should return 5", rangeObjectUnderTest.constrain(8.7), 5.0);
+		assertEquals("8.7 is above the upper bound so should return 5", 5.0, rangeObjectUnderTest.constrain(8.7), 0.00000001d);
 	}
 	
 	//Equals Method Tests
@@ -103,19 +103,19 @@ public class RangeTest extends TestCase {
 		assertFalse("Range object with different upper and lower bounds, should return false", rangeObjectUnderTest.equals(new Range(5, 93.2)));
 	}
 	@Test
-	public void testEquals_EqualLowerBoundLargerUpper() {
+	public void testEquals_EqualLowerLargerUpper() {
 		assertFalse("Range object with different upper and lower bounds, should return false", rangeObjectUnderTest.equals(new Range(1, 9.34)));
 	}
 	@Test
-	public void testEquals_EqualLowerBoundSmallerUpper() {
+	public void testEquals_EqualLowerSmallerUpper() {
 		assertFalse("Range object with different upper and lower bounds, should return false", rangeObjectUnderTest.equals(new Range(1, 4)));
 	}
 	@Test
-	public void testEquals_EqualUpperBoundLargerLower() {
+	public void testEquals_EqualUpperLargerLower() {
 		assertFalse("Range object with different upper and lower bounds, should return false", rangeObjectUnderTest.equals(new Range(0.2, 5)));
 	}
 	@Test
-	public void testEquals_EqualUpperBoundSmallerLower() {
+	public void testEquals_EqualUpperSmallerLower() {
 		assertFalse("Range object with different upper and lower bounds, should return false", rangeObjectUnderTest.equals(new Range(-19, 5)));
 	}
 	
@@ -123,76 +123,68 @@ public class RangeTest extends TestCase {
 	@Test
 	public void testExpandToInclude_nullAndNegativeValue() {
 		Range r = Range.expandToInclude(null, -4.7);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), -4.7);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), -4.7);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(-4.7, -4.7)));
 	}
 	@Test
 	public void testExpandToInclude_nullAndZeroValue() {
 		Range r = Range.expandToInclude(null, 0);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 0.0);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 0.0);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(0, 0)));
 	}
 	@Test
 	public void testExpandToInclude_nullAndPositiveValue() {
 		Range r = Range.expandToInclude(null, 3.4);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 3.4);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 3.4);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(3.4, 3.4)));
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueLessThanLower() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, -2.3);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), -2.3);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(-2.3, 5)));
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToLower() {
-		Range r = Range.expandToInclude(rangeObjectUnderTest, 1);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
+		Range r = Range.expandToInclude(rangeObjectUnderTest, 1.0);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(1, 5)));
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueWithinRange() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 4.1);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(1, 5)));
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 5);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(1, 5)));
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueGreaterThanUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 94.5);
-		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
-		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 94.5);
+		assertTrue("Range object r does not match expected Range object", r.equals(new Range(1, 94.5)));
 	}
 	
 	//getCentralValue Method Tests
 	@Test
 	public void testGetCentralValue_belowZeroAndUpperLowerEqual() {
 		Range r = new Range(-7.4, -7.4);
-		assertEquals("Correct central value not returned", r.getCentralValue(), -7.4);
+		assertEquals("Correct central value not returned", -7.4, r.getCentralValue(), 0.00000001d);
 	}
 	@Test
 	public void testGetCentralValue_belowZeroAndUpperLowerDiff() {
 		Range r = new Range(-3.2, -1);
-		assertEquals("Correct central value not returned", r.getCentralValue(), -2.1);
+		assertEquals("Correct central value not returned", -2.1, r.getCentralValue(), 0.00000001d);
 	}
 	@Test
 	public void testGetCentralValue_IntersectsZero() {
 		Range r = new Range(-4, 4);
-		assertEquals("Correct central value not returned", r.getCentralValue(), 0.0);
+		assertEquals("Correct central value not returned", 0.0, r.getCentralValue(), 0.00000001d);
 	}
 	@Test
 	public void testGetCentralValue_aboveZeroAndUpperLowerEqual() {
 		Range r = new Range(6.7, 6.7);
-		assertEquals("Correct central value not returned", r.getCentralValue(), 6.7);
+		assertEquals("Correct central value not returned", 6.7, r.getCentralValue(), 0.00000001d);
 	}
 	@Test
 	public void testGetCentralValue_aboveZeroAndUpperLowerDiff() {
 		Range r = new Range(1, 5);
-		assertEquals("Correct central value not returned", r.getCentralValue(), 3.0);
+		assertEquals("Correct central value not returned", 3.0, r.getCentralValue(), 0.00000001d);
 	}
 }
