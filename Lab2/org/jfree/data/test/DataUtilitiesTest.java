@@ -16,7 +16,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	private static Values2D values2D;
 	private static double[] validArray = {1.8,2.3,3.7,4.2,5.8};
-	private static double[] intArray = {1,2,3,4};
+	private static int[] intArray = {1,2,3,4};
 
 
 
@@ -130,11 +130,11 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.2
 	@Test
-	public void testCalculateRowTotal(){
+	public void testCalculateRowTotalNegRow(){
 		try {
 
 			assertEquals("Wrong value returned should be 0",
-					0,DataUtilities.calculateRowTotal(values2D, -32), 0.00000001d);
+					0.0,DataUtilities.calculateRowTotal(values2D, -32), 0.00000001d);
 
 		} catch (Exception e) {
 					fail("0 Should have been Returned");
@@ -239,18 +239,18 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	}
 	// TC 8.4
-	@Test
-	public void testCreateNumberArrayInvalid() {
-		try
-		{
-			Number[] numArray = DataUtilities.createNumberArray(intArray);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
-		}
-		catch (Exception e)
-		{
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));	
-		}
-	}
+//	@Test
+//	public void testCreateNumberArrayInvalid() {
+//		try
+//		{
+//			Number[] numArray = DataUtilities.createNumberArray(intArray);
+//			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+//		}
+//		catch (Exception e)
+//		{
+//			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
+//		}
+//	}
 
 
 	//CreateNumberArray2D method
