@@ -123,76 +123,76 @@ public class RangeTest extends TestCase {
 	@Test
 	public void testExpandToInclude_nullAndNegativeValue() {
 		Range r = Range.expandToInclude(null, -4.7);
-		assertEquals(r.getLowerBound(), -4.7);
-		assertEquals(r.getUpperBound(), -4.7);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), -4.7);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), -4.7);
 	}
 	@Test
 	public void testExpandToInclude_nullAndZeroValue() {
 		Range r = Range.expandToInclude(null, 0);
-		assertEquals(r.getLowerBound(), 0.0);
-		assertEquals(r.getUpperBound(), 0.0);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 0.0);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 0.0);
 	}
 	@Test
 	public void testExpandToInclude_nullAndPositiveValue() {
 		Range r = Range.expandToInclude(null, 3.4);
-		assertEquals(r.getLowerBound(), 3.4);
-		assertEquals(r.getUpperBound(), 3.4);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 3.4);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 3.4);
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueLessThanLower() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, -2.3);
-		assertEquals(r.getLowerBound(), -2.3);
-		assertEquals(r.getUpperBound(), 5.0);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), -2.3);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToLower() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 1);
-		assertEquals(r.getLowerBound(), 1.0);
-		assertEquals(r.getUpperBound(), 5.0);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueWithinRange() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 4.1);
-		assertEquals(r.getLowerBound(), 1.0);
-		assertEquals(r.getUpperBound(), 5.0);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 5);
-		assertEquals(r.getLowerBound(), 1.0);
-		assertEquals(r.getUpperBound(), 5.0);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 5.0);
 	}
 	@Test
 	public void testExpandToInclude_validRangeAndValueGreaterThanUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 94.5);
-		assertEquals(r.getLowerBound(), 1.0);
-		assertEquals(r.getUpperBound(), 94.5);
+		assertEquals("Incorrect lower bound returned", r.getLowerBound(), 1.0);
+		assertEquals("Incorrect upper bound returned", r.getUpperBound(), 94.5);
 	}
 	
 	//getCentralValue Method Tests
 	@Test
 	public void testGetCentralValue_belowZeroAndUpperLowerEqual() {
 		Range r = new Range(-7.4, -7.4);
-		assertEquals(r.getCentralValue(), -7.4);
+		assertEquals("Correct central value not returned", r.getCentralValue(), -7.4);
 	}
 	@Test
 	public void testGetCentralValue_belowZeroAndUpperLowerDiff() {
 		Range r = new Range(-3.2, -1);
-		assertEquals(r.getCentralValue(), -2.1);
+		assertEquals("Correct central value not returned", r.getCentralValue(), -2.1);
 	}
 	@Test
 	public void testGetCentralValue_IntersectsZero() {
 		Range r = new Range(-4, 4);
-		assertEquals(r.getCentralValue(), 0.0);
+		assertEquals("Correct central value not returned", r.getCentralValue(), 0.0);
 	}
 	@Test
 	public void testGetCentralValue_aboveZeroAndUpperLowerEqual() {
 		Range r = new Range(6.7, 6.7);
-		assertEquals(r.getCentralValue(), 6.7);
+		assertEquals("Correct central value not returned", r.getCentralValue(), 6.7);
 	}
 	@Test
 	public void testGetCentralValue_aboveZeroAndUpperLowerDiff() {
 		Range r = new Range(1, 5);
-		assertEquals(r.getCentralValue(), 3.0);
+		assertEquals("Correct central value not returned", r.getCentralValue(), 3.0);
 	}
 }
