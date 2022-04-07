@@ -148,49 +148,49 @@ public class RangeTest extends TestCase {
 	@Test
 	public void testExpandToInclude_nullAndNegativeValue() {
 		Range r = Range.expandToInclude(null, -4.7);
-		assertEquals("Range object r does not match expected Range object", r, new Range(-4.7, -4.7));
+		assertEquals("Range object r does not match expected Range object", new Range(-4.7, -4.7), r);
 	}
 	//TC 4.2
 	@Test
 	public void testExpandToInclude_nullAndZeroValue() {
 		Range r = Range.expandToInclude(null, 0);
-		assertEquals("Range object r does not match expected Range object", r, new Range(0, 0));
+		assertEquals("Range object r does not match expected Range object", new Range(0, 0), r);
 	}
 	//TC 4.3
 	@Test
 	public void testExpandToInclude_nullAndPositiveValue() {
 		Range r = Range.expandToInclude(null, 3.4);
-		assertEquals("Range object r does not match expected Range object", r, new Range(3.4, 3.4));
+		assertEquals("Range object r does not match expected Range object", new Range(3.4, 3.4), r);
 	}
 	//TC 4.4
 	@Test
 	public void testExpandToInclude_validRangeAndValueLessThanLower() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, -2.3);
-		assertEquals("Range object r does not match expected Range object", r, new Range(-2.3, 5));
+		assertEquals("Range object r does not match expected Range object", new Range(-2.3, 5), r);
 	}
 	//TC 4.5
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToLower() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 1.0);
-		assertEquals("Range object r does not match expected Range object", r, new Range(1, 5));
+		assertEquals("Range object r does not match expected Range object", new Range(1, 5), r);
 	}
 	//TC 4.6
 	@Test
 	public void testExpandToInclude_validRangeAndValueWithinRange() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 4.1);
-		assertEquals("Range object r does not match expected Range object", r, new Range(1, 5));
+		assertEquals("Range object r does not match expected Range object", new Range(1, 5), r);
 	}
 	//TC 4.7
 	@Test
 	public void testExpandToInclude_validRangeAndValueEqualToUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 5);
-		assertEquals("Range object r does not match expected Range object", r, new Range(1, 5));
+		assertEquals("Range object r does not match expected Range object", new Range(1, 5), r);
 	}
 	//TC 4.8
 	@Test
 	public void testExpandToInclude_validRangeAndValueGreaterThanUpper() {
 		Range r = Range.expandToInclude(rangeObjectUnderTest, 94.5);
-		assertEquals("Range object r does not match expected Range object", r, new Range(1, 94.5));
+		assertEquals("Range object r does not match expected Range object", new Range(1, 94.5), r);
 	}
 	
 	//getCentralValue Method Tests
