@@ -340,19 +340,14 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 
 	// TC 10.3
-
 	@Test
 	public void testGetCumulativePercentages_NegNumValue() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
-		kv.addValue("0", -1);
-		try {
+		kv.addValue("0", -5);
 			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
-			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
+			assertEquals(-0.3125, percentages.getIndex("0"), 0.0000001);
 		}
-		catch (Exception e) {
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(InvalidParameterException.class));
-		}
-	}
+
 	// TC 10.4
 	@Test
 	public void testGetCumulativePercentages_EmptyValues() {
