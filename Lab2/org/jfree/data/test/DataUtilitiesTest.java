@@ -48,7 +48,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//CalculateColumnTotal method
 	// TC 6.1
 	@Test
-	public void testCalculateColumnTotalValidData() {
+	public void testCalculateColumnTotal_ValidDataValidColumn() {
 
 		assertEquals("Wrong sum returned. It should be -735",
 				-735, DataUtilities.calculateColumnTotal(values2D, 3), 0.00000001d);
@@ -56,7 +56,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 6.2
 	@Test
-	public void testCalculateColumnTotalNegColumn(){
+	public void testCalculateColumnTotal_ValidDataNegColumn(){
 		try {
 
 			assertEquals("Wrong value returned should be 0",
@@ -67,7 +67,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 6.3
 	@Test
-	public void testCalculateColumnTotalGreaterThanColumnUpperBound() {
+	public void testCalculateColumn_ValidDataColumnGreaterThanColumnUpperBound() {
 
 		try {
 			assertEquals("Wrong value returned should be 0",
@@ -78,7 +78,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 6.4
 //	@Test
-//	public void testCalculateColumnTotalInvalidData(){
+//	public void testCalculateColumnTotal_StringDataValidColumn(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal("james", 0);
@@ -92,7 +92,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 6.5
 // @Test
-//	public void testCalculateColumnTotalInvalidDataNegNum(){
+//	public void testCalculateColumnTotal_CharDataNegNumColumn(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal('j', -23);
@@ -106,7 +106,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 		// TC 6.4
 //		@Test
-//	public void testBooleanDataCalculateColumnTotal(){
+//	public void testCalculateColumnTotal_BoolDataColumnGreaterThanColumnUpperBound(){
 //		try
 //		{
 //			DataUtilities.calculateColumnTotal(true, 55);
@@ -122,7 +122,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//calculatRowTotal method
 	// TC 7.1
 	@Test
-	public void testCalculateRowTotalValidData() {
+	public void testCalculateRowTotal_ValidDataValidColumn() {
 
 		assertEquals("Wrong sum returned. It should be 107",
 				107, DataUtilities.calculateRowTotal(values2D, 0), 0.00000001d);
@@ -130,7 +130,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.2
 	@Test
-	public void testCalculateRowTotalNegRow(){
+	public void testCalculateRowTotal_ValidDataNegRow(){
 		try {
 
 			assertEquals("Wrong value returned should be 0",
@@ -142,7 +142,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 7.3
 	@Test
-	public void testEmptyArrayRowTotal() {
+	public void testCalculateRowTotal_ValidDataColumnGreaterThanColumnUpperBound() {
 		try {
 			assertEquals("Wrong value returned should be 0",
 					0, DataUtilities.calculateRowTotal(values2D, 21), 0.00000001d);
@@ -152,7 +152,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 7.4
 	// @Test
-//	public void testInvalidDataValidRowTotal(){
+//	public void testCalculateRowTotal_StringDataValidRow(){
 //		try
 //		{
 //			DataUtilities.calculateRowTotal("james", 0);
@@ -166,7 +166,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.5
 //	@Test
-//	public void testInvalidDataInvalidRowTotal(){
+//	public void testCalculateRowTotal_CharDataNegRow(){
 //		try
 //		{
 //			DataUtilities.calculateRowTotal('j', -23);
@@ -180,7 +180,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 7.6
 //	@Test
-//	public void testBooleanDataCalculateRowTotal(){
+//	public void testCalculateRowTotal_BooleanDataColumnGreaterThanColumnUpperBound(){
 //		try
 //		{
 //			DataUtilities.calculateRowTotal(true, 55);
@@ -195,7 +195,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//createNumberArray method
 	// TC 8.1
 	@Test
-	public void testCreateNumberArrayValid() {
+	public void testCreateNumberArray_ValidData() {
 		try {
 			Number[] numArray = DataUtilities.createNumberArray(validArray);
 			assertEquals("Length of arrays must be equal.",
@@ -217,7 +217,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 8.2
 	@Test
-	public void testCreateNumberArrayEmpty() {
+	public void testCreateNumberArray_EmptyArrayData() {
 		double[] emptyArray = {};
 		Number[] numArray = DataUtilities.createNumberArray(emptyArray);
 		assertEquals("Length of arrays must be equal.",
@@ -225,7 +225,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 8.3
 	@Test
-	public void testCreateNumberArrayNull() {
+	public void testCreateNumberArray_NullData() {
 		double[] nullArray = null;
 		try
 		{
@@ -240,7 +240,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 8.4
 //	@Test
-//	public void testCreateNumberArrayInvalid() {
+//	public void testCreateNumberArray_IntArrayData() {
 //		try
 //		{
 //			Number[] numArray = DataUtilities.createNumberArray(intArray);
@@ -256,7 +256,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	//CreateNumberArray2D method
 	// TC 9.1
     @Test
-    public void testCreateNumberArray2D() {
+    public void testCreateNumberArray2D_ValidData() {
         double[][] valid2DArray = new double[2][];
         valid2DArray[0] = new double[] {1.7, 3.2, 5.8, 3.1};
         valid2DArray[1] = new double[] {191.2, 3.2, 6.3, 9.4};
@@ -267,7 +267,7 @@ public class DataUtilitiesTest extends DataUtilities {
     }
 	// TC 9.2
 	@Test
-	public void testCreateNumberArray2DEmpty() {
+	public void testCreateNumberArray2D_EmptyArrayData() {
 		double[][] empty2DArray = new double[2][];
 		empty2DArray[0] = new double[] {};
 		empty2DArray[1] = new double[] {};
@@ -278,7 +278,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 9.3
 	@Test
-	public void testCreateNumberArray2DNull() {
+	public void testCreateNumberArray2D_NullAData() {
 		double[][] null2DArray = null;
 		try
 		{
@@ -293,7 +293,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
     // TC 9.4
 //    @Test
-//    public void testCreateNumberArray2DInvalid() {
+//    public void testCreateNumberArray2D_IntArrayData() {
 //        int[][] invalid2DArray = new int[2][];
 //
 //        invalid2DArray[0] = new int[] {1, 3, 5, 3};
@@ -309,7 +309,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 10.1
 	@Test
-	public void testGetCumulativePercentagesValid() {
+	public void testGetCumulativePercentages_ValidData() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 		kv.addValue("0", 5);
 		kv.addValue("1", 9);
@@ -325,7 +325,7 @@ public class DataUtilitiesTest extends DataUtilities {
 
 	// TC 10.2
 	@Test
-	public void testGetCumulativePercentagesZero() {
+	public void testGetCumulativePercentages_ZeroValues() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 		kv.addValue("0", 0);
 		kv.addValue("1", 0);
@@ -342,7 +342,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	// TC 10.3
 
 	@Test
-	public void testGetCumulativePercentagesNegNum() {
+	public void testGetCumulativePercentages_NegNumValue() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 		kv.addValue("0", -1);
 		try {
@@ -355,7 +355,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 10.4
 	@Test
-	public void testGetCumulativePercentagesEmpty() {
+	public void testGetCumulativePercentages_EmptyValues() {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 
 		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
@@ -364,7 +364,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	// TC 10.5
 	@Test
-	public void testGetCumulativePercentagesNull() {
+	public void testGetCumulativePercentages_NullData() {
 		try {
 			KeyedValues percentages = DataUtilities.getCumulativePercentages(null);
 			fail("No exception thrown - Expected outcome was: a thrown exception of type: InvalidParameterException");
@@ -374,7 +374,7 @@ public class DataUtilitiesTest extends DataUtilities {
 		}
 	}
 	// TC 10.6
-//	@Test public void testGetCumulativePercentagesInvalidInput() {
+//	@Test public void testGetCumulativePercentages_DoubleArrayData() {
 //		double[] values = new double[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 //		try {
 //			KeyedValues percentages = DataUtilities.getCumulativePercentages(values);
