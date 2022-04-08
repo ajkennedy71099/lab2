@@ -317,9 +317,9 @@ public class DataUtilitiesTest extends DataUtilities {
 
 		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
 
-		assertEquals(0.3125, percentages.getIndex("0"), 0.0000001);
-		assertEquals(0.875, percentages.getIndex("1"), 0.0000001);
-		assertEquals(0.1, percentages.getIndex("2"), 0.0000001);
+		assertEquals(0.3125, percentages.getValue("0").doubleValue(), 0.0000001);
+		assertEquals(0.875, percentages.getValue("1").doubleValue(), 0.0000001);
+		assertEquals(0.1, percentages.getValue("2").doubleValue(), 0.0000001);
 
 	}
 
@@ -333,9 +333,9 @@ public class DataUtilitiesTest extends DataUtilities {
 
 		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
 
-		assertEquals(0, percentages.getIndex("0"), 0.0000001);
-		assertEquals(0, percentages.getIndex("1"), 0.0000001);
-		assertEquals(0, percentages.getIndex("2"), 0.0000001);
+		assertEquals(0, percentages.getValue("0").doubleValue(), 0.0000001);
+		assertEquals(0, percentages.getValue("1").doubleValue(), 0.0000001);
+		assertEquals(0, percentages.getValue("2").doubleValue(), 0.0000001);
 
 	}
 
@@ -345,17 +345,22 @@ public class DataUtilitiesTest extends DataUtilities {
 		DefaultKeyedValues kv = new DefaultKeyedValues();
 		kv.addValue("0", -5);
 			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
-			assertEquals(-0.3125, percentages.getIndex("0"), 0.0000001);
+			assertEquals(-0.3125, percentages.getValue("0").doubleValue(), 0.0000001);
 		}
 
 	// TC 10.4
 	@Test
 	public void testGetCumulativePercentages_EmptyValues() {
-		DefaultKeyedValues kv = new DefaultKeyedValues();
+		try {
+			DefaultKeyedValues kv = new DefaultKeyedValues();
 
-		KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
+			KeyedValues percentages = DataUtilities.getCumulativePercentages(kv);
 
-		assertEquals(0, percentages.getIndex("0"), 0.0000001);
+			assertEquals(0, percentages.getValue("0").doubleValue(), 0.0000001);
+		}
+		catch(Exception e) {
+			fail("Error thrown unexpectedly. " + e.getMessage());
+		}
 	}
 	// TC 10.5
 	@Test
